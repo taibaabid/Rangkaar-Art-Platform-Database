@@ -16,7 +16,6 @@ A comprehensive, production-ready Relational Database Management System (RDBMS) 
 
 This database design utilizes proper crow's foot cardinality notation to maintain strict relational integrity across all modules. 
 
-> 💡 **Tip:** GitHub automatically renders the interactive visual diagram below!
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffffff', 'primaryTextColor': '#1e293b', 'primaryBorderColor': '#0284c7', 'lineColor': '#475569', 'secondaryColor': '#f8fafc', 'tertiaryColor': '#334155'}}}%%
@@ -114,17 +113,17 @@ erDiagram
         int ExhibitionID FK
     }
 
-    ARTISTS ||--oM ARTWORKS : "creates"
-    STUDENTS ||--oM ARTWORKS : "creates"
-    SUBCATEGORIES ||--oM ARTWORKS : "has"
-    CATEGORIES ||----oM SUBCATEGORIES : "has"
+    ARTISTS ||--o{ ARTWORKS : "creates"
+    STUDENTS ||--o{ ARTWORKS : "creates"
+    SUBCATEGORIES ||--o{ ARTWORKS : "has"
+    CATEGORIES ||--o{ SUBCATEGORIES : "has"
     
-    CUSTOMERS ||--oM ORDERS : "places"
-    ARTWORKS ||--oM ORDERS : "are ordered"
+    CUSTOMERS ||--o{ ORDERS : "places"
+    ARTWORKS ||--o{ ORDERS : "are ordered"
     ORDERS ||--|| PAYMENTS : "has"
 
-    ARTISTS ||--oM ARTIST-EXHIBITIONS : "participates"
-    EXHIBITIONS ||--oM ARTIST-EXHIBITIONS : "hosts"
+    ARTISTS ||--o{ ARTIST-EXHIBITIONS : "participates"
+    EXHIBITIONS ||--o{ ARTIST-EXHIBITIONS : "hosts"
 
-    STUDENTS ||--oM STUDENT-INTERNSHIPS : "applies to"
-    INTERNSHIPS ||--oM STUDENT-INTERNSHIPS : "offers"
+    STUDENTS ||--o{ STUDENT-INTERNSHIPS : "applies to"
+    INTERNSHIPS ||--o{ STUDENT-INTERNSHIPS : "offers"
